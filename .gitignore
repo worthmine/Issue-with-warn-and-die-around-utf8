@@ -31,3 +31,7 @@ cover_db/
 MYMETA.*
 
 /usw-*
+/warn-*
+/.build
+!Build/
+!META.json
