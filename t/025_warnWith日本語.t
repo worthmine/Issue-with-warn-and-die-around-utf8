@@ -10,12 +10,15 @@ local $SIG{__WARN__} = sub {
     if ( $_[0] =~ qr/^宣言/ ) {
         BAIL_OUT "code is broken" if $_[0] =~ /^\x{5BA3}\x{8A00}\x{3042}\x{308A}$/;
 
-        pass "decoded text '$str' was warned at $path line $line.";
-
-        #line 13 has a problem under `use utf8;` of course
-        #"Wide character in print at $PATH/Test2/Formatter/TAP.pm line 156."
-        #appears again. using encode_utf8 is a silver bullet
         pass encode_utf8 "decoded text '$str' was warned at $path line $line.";
+
+        # This line has no warning but mojibake
+        # It's ok if this line was
+        pass "decoded text '" . encode_utf8($str) . "' was warned at $path line $line.";
+
+       # or
+       #pass encode_utf8 "decoded text '$str' was warned at " . decode_utf8($path) . " line $line.";
+       # why?
     } else {
         my $encoded = encode_utf8 $_[0];
         fail "it's an unexpected warning: $encoded";

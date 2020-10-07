@@ -1,24 +1,23 @@
+# The same issue is available with `die`
 use Test::More 0.98 tests => 3;
 use Encode qw(is_utf8 encode_utf8 decode_utf8);
 use lib 'lib';
 
-local $SIG{__WARN__} = sub {
+local $SIG{__DIE__} = sub {
     use utf8;
     $_[0] =~ /(.+) at (.+) line (\d+)\.$/;
-    return pass("plain text '$1' was warned at $2 line $3.") unless is_utf8($1);
+    return pass("plain text '$1' was died at $2 line $3.") unless is_utf8($1);
     my ( $str, $path, $line ) = ( $1, $2, $3 );
     if ( $_[0] =~ qr/^宣言/ ) {
         BAIL_OUT "code is broken" if $_[0] =~ /^\x{5BA3}\x{8A00}\x{3042}\x{308A}$/;
 
-        pass "decoded text '$str' was warned at $path line $line.";
+        pass encode_utf8 "decoded text '$str' was died at $path line $line.";
 
-        #line 13 has a problem under `use utf8;` of course
-        #"Wide character in print at $PATH/Test2/Formatter/TAP.pm line 156."
-        #appears again. using encode_utf8 is a silver bullet
-        pass encode_utf8 "decoded text '$str' was warned at $path line $line.";
+        # above cause mojibake, and below is strange
+        pass encode_utf8 "decoded text '$str' was died at " . decode_utf8($path) . " line $line.";
     } else {
         my $encoded = encode_utf8 $_[0];
-        fail "it's an unexpected warning: $encoded";
+        fail "it's an unexpected dying: $encoded";
     }
 };
 
@@ -35,8 +34,8 @@ subtest 'Inside of utf8' => sub {
     plan tests => 5;
     use utf8;
     my $decoded = '宣言あり';
-    eval { warn $ascii }   and pass("$ascii is an ASCII");
-    eval { warn $decoded } and pass("pass to warn with decoded strings");
+    eval { die $ascii }   or pass("$ascii is an ASCII");
+    eval { die $decoded } or pass("pass to die with decoded strings");
 };
 
 subtest 'after use utf8' => \&plainTest;
@@ -45,6 +44,6 @@ done_testing;
 
 sub plainTest {
     plan tests => 4;
-    eval { warn $ascii } and pass("$ascii is an ASCII");
-    eval { warn $plain } and pass("$plain is a plain");
+    eval { die $ascii } or pass("$ascii is an ASCII");
+    eval { die $plain } or pass("$plain is a plain");
 }
