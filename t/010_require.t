@@ -1,5 +1,6 @@
 use usw;
 use Test::More 0.98;
+use Encode qw(encode_utf8 decode_utf8);
 use lib 'lib';
 
 my @libs = qw(
@@ -8,7 +9,16 @@ my @libs = qw(
     日本語::Plain
     日本語::で
 );
-require_ok($_) for map { _getPath($_) } @libs;
+
+note 'start to require';
+eval "require $_" || warn $@ for @libs;             # there is no warnings;
+note $_ for sort keys %INC;                         # it seems they succeed to be required;
+note 'end to require';
+
+#require_ok($_) for @libs;                           # last two fail, why?
+#require_ok( encode_utf8 $_) for @libs;              # other than first one fail, why?
+
+require_ok($_) for map { _getPath($_) } @libs;    # pass
 
 for (@libs) {
     my $class = new_ok($_);
