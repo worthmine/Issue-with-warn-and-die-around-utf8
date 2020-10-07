@@ -1,4 +1,4 @@
-use usw;
+use usw;    # https://github.com/worthmine/usw
 use Test::More 0.98;
 use lib 'lib';
 
