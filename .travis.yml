@@ -1,0 +1,18 @@
+language: perl
+matrix:
+  include:
+  - perl: '5.12'
+    dist: trusty
+  - perl: '5.14'
+  - perl: '5.16'
+  - perl: '5.18'
+  - perl: '5.20'
+  - perl: '5.22'
+  - perl: '5.24'
+  - perl: '5.26'
+  - perl: '5.28'
+  - perl: '5.30'
+notifications:
+  email: false
+  slack:
+    secure: W2XiYwtQSegls37c/vIEJ3TYoPW5oqUanc9BoLQpl9+L3QYRtJr7ilRE3XGuR0UOv0A7Pa1HTkwH+lURcK08i7vaNOMH8Tfz62EJo6P273uOcX7Dl52xDUP/Yq75fXKeen/ZfXD2NqiUszRfO33gzeNT0gjK/HTplQyrPEwDf/9Cs9FVnzUo3ec4Hb6vtAJaCqMN77R9wLxTBhgaLAiiGUkC/EIcjyknaS/N0EdbdyooQE/rtd9aOxbRKie2B54dIQgzK2MwEk+/tufN7emMEthF5IoiOq7yHynPDz3fld1xMCRiifU5yEqNyzeT/6s2shG+WGxvMOsQIMC+YPAQDWpNLJ1jO9EomZRGA5k7oqOqQk03UFmTTYnoR7dAxv9VN3bikaN4e3u362iOx2fPNyITXpeNrIrJMhIfFwswtKVmBYrAKPcTJiEX6s+yoIK0zoWuG+hgy+xATF51s7LaizV5g8zDBTiAFz4If0ki4fcIhp7xogKq8JJt4kOcmjXk62+iDOstKyMPLAGsgVdcWLoC/XWe2hYQ/Z0m3vSbHjS4PfMEI01biqb/l8OV0fYvIXboeQnzKyLrGJE1Lq6cQyjFJ5QryCKUIUXtWquQ2Nj5/3GknLoZvK983RbG8MDBhRojz20/ZOIS2jVyrrMKebTUS/wkXL5LoAxG5e87qHw=
