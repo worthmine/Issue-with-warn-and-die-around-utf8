@@ -1,5 +1,5 @@
 {
-   "abstract": "use utf8; use strict; use warnings; in one line.",
+   "abstract": "",
    "author": [
       "Yuki Yoshida(L<worthmine|https://github.com/worthmine>)"
    ],
@@ -54,18 +54,18 @@
       }
    },
    "release_status": "unstable",
-   "resources": {
-      "bugtracker": {
-         "web": "https://github.com/worthmine/usw/issues"
-      },
-      "homepage": "https://github.com/worthmine/usw",
-      "repository": {
-         "type": "git",
-         "url": "git://github.com/worthmine/usw.git",
-         "web": "https://github.com/worthmine/usw"
-      }
-   },
-   "version": "0.10",
+   //   "resources": {
+   //      "bugtracker": {
+   //         "web": "https://github.com/worthmine/usw/issues"
+   //      },
+   //      "homepage": "https://github.com/worthmine/usw",
+   //      "repository": {
+   //         "type": "git",
+   //         "url": "git://github.com/worthmine/usw.git",
+   //         "web": "https://github.com/worthmine/usw"
+   //      }
+   //   },
+   "version": "0.01",
    "x_authority": "cpan:WORTHMINE",
    "x_contributors": [
       "worthmine <worthmine@gmail.com>"
